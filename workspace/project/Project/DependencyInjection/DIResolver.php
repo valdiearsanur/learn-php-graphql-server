@@ -3,7 +3,8 @@ namespace Project\DependencyInjection;
 
 use DI\Container;
 
-class DIResolver {
+class DIResolver
+{
 	private static $container;
 	
 	public static function has($name)
@@ -24,7 +25,7 @@ class DIResolver {
 		return $class;
 	}
 
-	private static function getContainer()
+	public static function getContainer()
 	{
 		if (static::$container === null) {
 			global $container;
