@@ -2,6 +2,17 @@
 
 namespace Project\Controller;
 
+use GraphQL\Error\Debug;
+use GraphQL\GraphQL;
+use GraphQL\Type\Schema;
+use GraphQL\Type\SchemaConfig;
+use GraphQL\Server\StandardServer;
+use GraphQL\Server\ServerConfig;
+use Project\DependencyInjection\DIResolver;
+use Project\GraphQL\Mutation;
+use Project\GraphQL\Query;
+use Project\Product\DIResolver\ProductDIResolver;
+use Project\Product\Service\SaveProductService;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -34,8 +45,35 @@ class GraphQLController
 	*/
 	public function postGraphQL(Request $request, Response $response, $args = [])
 	{
-		$result = 'Hello from /graphql/ on http post';
+		$resolver = DIResolver::resolve(ProductDIResolver::class);
+		$resolver->resolve();
 
-		$response->getBody()->write($result);
+		try {
+			$query = DIResolver::resolve(Query::class);
+			$mutation = DIResolver::resolve(Mutation::class);
+
+			$schemaConfig = SchemaConfig::create()
+				->setQuery($query)
+				->setMutation($mutation);
+
+			$schema = new Schema($schemaConfig);
+			$debug = Debug::INCLUDE_DEBUG_MESSAGE | Debug::INCLUDE_TRACE;
+
+			$serverConfig = ServerConfig::create()
+				->setSchema($schema)
+				->setDebug($debug);
+
+			$server = new StandardServer($serverConfig);
+
+			$result = $server->executePsrRequest($request);
+
+			$response->getBody()->write(json_encode($result));
+
+			return $response;
+
+		} catch (\Exception $e) {
+			var_dump($e);
+			StandardServer::send500Error($e);
+		}
 	}
 }
