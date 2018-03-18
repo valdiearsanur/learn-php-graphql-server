@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../workspace:/home/workspace:ro
+      - ../workspace:/home/workspace
       - ./nginx/sites/site.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/log:/var/log/nginx
     links:
@@ -15,7 +15,16 @@ services:
 
   dev-php:
     restart: always
-    image: php:7-fpm
+    build: ./dockerfiles/php-fpm71
     container_name: dev-php
     volumes:
-      - ../workspace:/home/workspace:ro
+      - ../workspace:/home/workspace
+
+  dev-mongo:
+    restart: always
+    image: mongo:3.7
+    container_name: dev-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../workspace:/home/workspace
