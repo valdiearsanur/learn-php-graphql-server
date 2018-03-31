@@ -4,8 +4,8 @@ namespace Project\Product\DIResolver;
 use Project\DependencyInjection\DIResolver;
 use Project\Product\DaoFactory\ProductDaoFactoryInterface;
 use Project\Product\Repository\ProductRepositoryInterface;
-use Project\Persistance\Doctrine\DaoFactory\ProductDaoFactory;
-use Project\Persistance\Doctrine\Repository\ProductRepository;
+use Project\Persistance\Doctrine\Product\DaoFactory\ProductDaoFactory;
+use Project\Persistance\Doctrine\Product\Repository\ProductRepository;
 
 class ProductDIResolver
 {

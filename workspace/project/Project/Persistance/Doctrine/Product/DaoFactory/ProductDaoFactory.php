@@ -1,7 +1,7 @@
 <?php 
-namespace Project\Persistance\Doctrine\DaoFactory;
+namespace Project\Persistance\Doctrine\Product\DaoFactory;
 
-use Project\Persistance\Doctrine\Dao\ProductDao;
+use Project\Persistance\Doctrine\Product\Dao\ProductDao;
 use Project\Product\DaoFactory\ProductDaoFactoryInterface;
 
 class ProductDaoFactory implements ProductDaoFactoryInterface

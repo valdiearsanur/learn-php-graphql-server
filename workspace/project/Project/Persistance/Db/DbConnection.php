@@ -1,5 +1,5 @@
 <?php
-namespace Project\Presistance;
+namespace Project\Persistance\Db;
 
 interface DbConnection
 {

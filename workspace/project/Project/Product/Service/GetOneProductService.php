@@ -3,7 +3,7 @@ namespace Project\Product\Service;
 
 use Project\Product\Repository\ProductRepositoryInterface;
 
-class ListProductService 
+class GetOneProductService
 {
 	private $repo;
 
@@ -12,14 +12,7 @@ class ListProductService
 		$this->repo = $productRepository;
 	}
 
-	public function getAllProducts()
-	{
-		$result = $this->repo->getMany();
-
-		return $result;
-	}
-
-	public function getProduct($id)
+	public function execute($id)
 	{
 		$result = $this->repo->get($id);
 

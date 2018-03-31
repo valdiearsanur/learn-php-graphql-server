@@ -1,5 +1,5 @@
 <?php
-namespace Project\Persistance\Doctrine\Dao;
+namespace Project\Persistance\Doctrine\Product\Dao;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Project\Product\Dao\ProductDaoInterface;

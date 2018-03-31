@@ -17,7 +17,7 @@ class CreateProductResolver
 		$name,
 		$price
 	) {
-		$result = $this->service->save(null, $name, $price);
+		$result = $this->service->execute(null, $name, $price);
 		return $result;
 	}
 }

@@ -1,11 +1,11 @@
 <?php
 
-use Project\Presistance\MongoConnection;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\MongoDB\Connection;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
+use Project\Persistance\Doctrine\Db\MongoConnection;
 
 $vendor_loader->add('Documents', __DIR__);
 

@@ -1,27 +1,31 @@
 <?php
 namespace Project\GraphQL\Product\Resolver;
 
-use Project\Product\Service\ListProductService;
+use Project\Product\Service\GetManyProductService;
+use Project\Product\Service\GetOneProductService;
 
 class ProductResolver
 {
-	private $service;
+	private $getManyService;
+	private $getOneService;
 
 	public function __construct(
-		ListProductService $productService
+		GetManyProductService $getManyProductService,
+		GetOneProductService $getOneProductService
 	) {
-		$this->service = $productService;
+		$this->getManyService = $getManyProductService;
+		$this->getOneService = $getOneProductService;
 	}
 
 	public function resolveProducts()
 	{
-		$result = $this->service->getAllProducts();
+		$result = $this->getManyService->execute();
 		return $result;
 	}
 
 	public function resolveProduct($id)
 	{
-		$result = $this->service->getProduct($id);
+		$result = $this->getOneService->execute($id);
 		return $result;
 	}
 }

@@ -1,8 +1,8 @@
 <?php
-namespace Project\Persistance\Doctrine\Repository;
+namespace Project\Persistance\Doctrine\Product\Repository;
 
-use Project\Persistance\Doctrine\Dao\ProductDao;
-use Project\Presistance\MongoConnection;
+use Project\Persistance\Doctrine\Product\Dao\ProductDao;
+use Project\Persistance\Doctrine\Db\MongoConnection;
 use Project\Product\DaoFactory\ProductDaoFactoryInterface;
 use Project\Product\Factory\ProductFactory;
 use Project\Product\Entity\Product;
@@ -39,7 +39,7 @@ class ProductRepository implements ProductRepositoryInterface
 		return $result;
 	}
 
-	public function getMany()
+	public function getMany($filter, $limit, $sort)
 	{
 		$records = $this->db->getRepository(ProductDao::class)->findAll();
 

@@ -17,18 +17,33 @@ class SaveProductService
 		$this->factory = $productFactory;
 	}
 
-	public function save(
+	public function execute(
 		$id,
 		$name,
 		$price
 	) {
+		$this->validate(
+			$id,
+			$name,
+			$price
+		);
+
 		$product = $this->factory->create(
 			$id,
 			$name,
 			$price
 		);
+
 		$result = $this->repo->save($product);
 
 		return $result;
+	}
+
+	private function validate(
+		$id,
+		$name,
+		$price
+	) {
+		return true;
 	}
 }

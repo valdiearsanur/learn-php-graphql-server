@@ -7,7 +7,7 @@ interface ProductRepositoryInterface
 {
 	public function save(Product $product);
 
-	public function getMany();
+	public function getMany($filter, $limit, $sort);
 
 	public function get($id);
 }
